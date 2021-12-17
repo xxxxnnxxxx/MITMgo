@@ -18,10 +18,10 @@ func GenerateCA() ([]byte, []byte, error) {
 	ca := &x509.Certificate{
 		SerialNumber: big.NewInt(2021),
 		Subject: pkix.Name{
-			Organization:  []string{"XYPentestingPlatform"},
+			Organization:  []string{"PentestingPlatform"},
 			Country:       []string{"CN"},
 			Province:      []string{""},
-			Locality:      []string{"JiLing"},
+			Locality:      []string{"xxxxnnxxxx"},
 			StreetAddress: []string{""},
 			PostalCode:    []string{"000000"},
 		},

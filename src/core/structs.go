@@ -79,24 +79,6 @@ func ToCrawlResult(Id string, req *http.Request) (*CrawlResult, error) {
 						mediaType == "text/plain" {
 						crawlResult.PostData = string(body)
 					} else if strings.HasPrefix(mediaType, "multipart/") {
-						//mr := multipart.NewReader(bytes.NewReader(body), params["boundary"])
-						//bodyData := ""
-						//for {
-						//	p, err := mr.NextPart()
-						//	if err == io.EOF {
-						//		break
-						//	}
-						//
-						//	bodyData += params["boundary"]
-						//	bodyData += "\r\n"
-						//	for k, v := range p.Header {
-						//		bodyData += k + ":" + strings.Join(v, "")
-						//		bodyData += "\r\n"
-						//	}
-						//	bodyData += "\r\n"
-						//}
-						//bodyData += params["boundary"] + "--" + "\r\n"
-
 						crawlResult.PostData = string(body)
 					} else {
 						crawlResult.PostData = string(body)
