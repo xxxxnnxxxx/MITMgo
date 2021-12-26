@@ -50,12 +50,8 @@ func ToCrawlResult(Id string, req *http.Request) (*CrawlResult, error) {
 			Tag:     1,
 		}
 
-		for k, v := range req.Header {
-			var value = ""
-			for _, val := range v {
-				value += val + " "
-			}
-			crawlResult.Headers[k] = value
+		for k, _ := range req.Header {
+			crawlResult.Headers[k] = req.Header.Get(k)
 		}
 
 		if req.Method == "POST" {
