@@ -249,7 +249,7 @@ func (p *ProxyEntity) ModifyRequest(req *http.Request) error {
 		}
 
 		func() error {
-			crawlResult, err := core.ToCrawlResult(p.Id, req)
+			crawlResult, err := core.ToRequestResult(p.Id, req)
 			if err != nil {
 				return nil
 			}

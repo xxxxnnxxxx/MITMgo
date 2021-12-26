@@ -15,7 +15,7 @@ import (
 )
 
 //easyjson:json
-type CrawlResult struct {
+type RequestResult struct {
 	Id       string            `json:"id"`
 	Method   string            `json:"method"`
 	Link     string            `json:"link"`
@@ -26,23 +26,23 @@ type CrawlResult struct {
 }
 
 type RemoteOutputCrawlResult struct {
-	Id     string        `json:"id"`
-	Result []CrawlResult `json:"result"`
+	Id     string          `json:"id"`
+	Result []RequestResult `json:"result"`
 }
 
 func NewRemoteOutputCrawlResult() *RemoteOutputCrawlResult {
 	return &RemoteOutputCrawlResult{
-		Result: make([]CrawlResult, 0),
+		Result: make([]RequestResult, 0),
 	}
 }
 
-func ToCrawlResult(Id string, req *http.Request) (*CrawlResult, error) {
+func ToRequestResult(Id string, req *http.Request) (*RequestResult, error) {
 	if req == nil {
 		return nil, errors.New("request is empty")
 	}
 
 	if req.Method == "GET" || req.Method == "POST" {
-		crawlResult := &CrawlResult{
+		crawlResult := &RequestResult{
 			Id:      Id,
 			Method:  req.Method,
 			Link:    req.URL.String(),
@@ -91,7 +91,7 @@ func ToCrawlResult(Id string, req *http.Request) (*CrawlResult, error) {
 	return nil, nil
 }
 
-func (p *CrawlResult) IslikeVuejsorAngularLnk() bool {
+func (p *RequestResult) IslikeVuejsorAngularLnk() bool {
 
 	if len(p.Link) == 0 {
 		return false
@@ -110,7 +110,7 @@ func (p *CrawlResult) IslikeVuejsorAngularLnk() bool {
 	return false
 }
 
-func (p *CrawlResult) GetstandardFlagUriEx(ignorecase bool) string {
+func (p *RequestResult) GetstandardFlagUriEx(ignorecase bool) string {
 	var result = ""
 	if p.IslikeVuejsorAngularLnk() {
 		return p.Link
@@ -121,7 +121,7 @@ func (p *CrawlResult) GetstandardFlagUriEx(ignorecase bool) string {
 	return result
 }
 
-func (p *CrawlResult) GetUrlWithoutFragmentEx(ignorecase bool) string {
+func (p *RequestResult) GetUrlWithoutFragmentEx(ignorecase bool) string {
 	if len(p.Link) == 0 {
 		return ""
 	}
