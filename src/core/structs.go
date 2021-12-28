@@ -174,7 +174,7 @@ func (p *RequestResult) GetUrlWithoutFragmentEx(ignorecase bool) string {
 
 				mr := multipart.NewReader(strings.NewReader(p.PostData), params["boundary"])
 				for {
-					ptmp, err1 := mr.NextPart()
+					ptmp, err1 := mr.NextRawPart()
 					if err1 == io.EOF {
 						break
 					}
